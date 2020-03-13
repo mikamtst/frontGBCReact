@@ -17,7 +17,7 @@ class AddEditForm extends Component {
 
     submitFormAdd = e => {
         e.preventDefault()
-        fetch('http://localhost:3333/create', {
+        fetch('https://backgbc.herokuapp.com/create', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ class AddEditForm extends Component {
 
     submitFormEdit = e => {
         e.preventDefault()
-        fetch(`http://localhost:3333/medico/${this.state.crm}/update`, {
+        fetch(`https://backgbc.herokuapp.com/medico/${this.state.crm}/update`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json'

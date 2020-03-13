@@ -7,7 +7,7 @@ class DataTable extends Component {
   deleteItem = crm => {
     let confirmDelete = window.confirm('Deletar médico?')
     if (confirmDelete) {
-      fetch(`http://localhost:3333/medico/${crm}/delete`, {
+      fetch(`https://backgbc.herokuapp.com/medico/${crm}/delete`, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json'

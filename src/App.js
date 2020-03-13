@@ -9,7 +9,7 @@ class App extends Component {
   }
 
   getItems() {
-    fetch('http://localhost:3333/medicos')
+    fetch('https://backgbc.herokuapp.com/medicos')
       .then(response => response.json())
       .then(items => this.setState({ items }))
       .catch(err => console.log(err))
