@@ -48,7 +48,7 @@ class App extends Component {
       <Container className="App">
         <Row>
           <Col>
-            <h1 style={{ margin: "20px 0" }}>CRUD Database</h1>
+            <h1 style={{ margin: "20px 0" }}>CRU GBC</h1>
           </Col>
         </Row>
         <Row>
@@ -58,7 +58,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col>
-            <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState} />
+            <ModalForm buttonLabel="Adicionar item" addItemToState={this.addItemToState} />
           </Col>
         </Row>
       </Container>

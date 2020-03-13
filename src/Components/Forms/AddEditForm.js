@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-class AddEditForm extends React.Component {
+class AddEditForm extends Component {
     state = {
         nome: '',
         crm: '',
@@ -31,33 +31,43 @@ class AddEditForm extends React.Component {
                 especialidade: this.state.especialidade
             })
         })
-            .then(response => response.json())
-            .then(item => {
-
-
-
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload(false)
+                }else {
+                    alert("Erro")
+                }
             })
             .catch(err => console.log(err))
     }
 
-    // submitFormEdit = e => {
-    //     e.preventDefault()
-    //     fetch(`http://localhost:3333/${this.state.crm}/update`, {
-    //         method: 'put',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             nome: this.state.nome,
-    //             telefone: this.state.telefone,
-    //             cidade: this.state.cidade,
-    //             estado: this.state.estado,
-    //             especialidade: this.state.especialidade,
-    //             crm: this.state.crm
-    //         })
-    //     }).then(response => console.log(response))
+    submitFormEdit = e => {
+        e.preventDefault()
+        fetch(`http://localhost:3333/medico/${this.state.crm}/update`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nome: this.state.nome,
+                telefone: this.state.telefone,
+                cidade: this.state.cidade,
+                estado: this.state.estado,
+                especialidade: this.state.especialidade,
+                crm: this.state.crm
+            })
+        })
+        .then(response => {
 
-    // }
+            if(response.status === 404){
+                alert('CRM não pode ser alterado')
+            }else {
+                window.location.reload()
+            }
+            
+        })
+            
+    }
 
     componentDidMount() {
         // if item exists, populate the state with proper data
@@ -96,7 +106,7 @@ class AddEditForm extends React.Component {
                     <Input type="text" name="especialidade" id="especialidade" onChange={this.onChange} value={this.state.especialidade == null ? '' : this.state.especialidade} />
                 </FormGroup>
 
-                <Button>Submit</Button>
+                <Button>Enviar</Button>
             </Form>
         );
     }
